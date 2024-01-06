@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> Calculator</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        .calculator {
+            width: 300px;
+            margin: 0 auto;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+        }
+
+        #display {
+            height: 60px;
+            font-size: 24px;
+            border: none;
+            border-radius: 10px;
+            text-align: right;
+            padding-right: 10px;
+            margin-bottom: 10px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+        }
+
+        .btn {
+            font-size: 20px;
+            height: 60px;
+            margin: 5px;
+            padding: 0;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+        }
+
+        .btn-clear {
+            background-color: #ff3f34;
+            color: #fff;
+        }
+
+        .btn-operator {
+            background-color: #ff9500;
+            color: #fff;
+        }
+
+        .btn-equal {
+            background-color: #4cd964;
+            color: #fff;
+        }
+
+        .btn-backspace {
+            background-color: #007aff;
+            color: #fff;
+        }
+
+        .btn-secondary {
+            background-color: #dcdcdc;
+        }
+
+        .row {
+            margin-bottom: 5px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container mt-5">
+        <div class="calculator card">
+            <div class="card-header bg-dark text-white">
+                By Muhammad Daniyal
+            </div>
+            <div class="card-body">
+                <input type="text" id="display" class="form-control" readonly>
+                <div class="row">
+                    <div class="col-md-3">
+                        <button class="btn btn-clear btn-block" onclick="clearDisplay()">C</button>
+                    </div>
+                    <div class="col-md-3">
+                        <button class="btn btn-secondary btn-block" onclick="appendToDisplay('7')">7</button>
+                    </div>
+                    <div class="col-md-3">
+                        <button class="btn btn-secondary btn-block" onclick="appendToDisplay('8')">8</button>
+                    </div>
+                    <div class="col-md-3">
+                        <button class="btn btn-secondary btn-block" onclick="appendToDisplay('9')">9</button>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-3">
+                        <button class="btn btn-secondary btn-block" onclick="appendToDisplay('4')">4</button>
+                    </div>
+                    <div class="col-md-3">
+                        <button class="btn btn-secondary btn-block" onclick="appendToDisplay('5')">5</button>
+                    </div>
+                    <div class="col-md-3">
+                        <button class="btn btn-secondary btn-block" onclick="appendToDisplay('6')">6</button>
+                    </div>
+                    <div class="col-md-3">
+                        <button class="btn btn-operator btn-block" onclick="appendToDisplay('*')">x</button>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-3">
+                        <button class="btn btn-secondary btn-block" onclick="appendToDisplay('1')">1</button>
+                    </div>
+                    <div class="col-md-3">
+                        <button class="btn btn-secondary btn-block" onclick="appendToDisplay('2')">2</button>
+                    </div>
+                    <div class="col-md-3">
+                        <button class="btn btn-secondary btn-block" onclick="appendToDisplay('3')">3</button>
+                    </div>
+                    <div class="col-md-3">
+                        <button class="btn btn-operator btn-block" onclick="appendToDisplay('-')">-</button>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-3">
+                        <button class="btn btn-secondary btn-block" onclick="appendToDisplay('0')">0</button>
+                    </div>
+                    <div class="col-md-3">
+                        <button class="btn btn-operator btn-block" onclick="appendToDisplay('.')">.</button>
+                    </div>
+                    <div class="col-md-3">
+                        <button class="btn btn-equal btn-block" onclick="calculate()">=</button>
+                    </div>
+                    <div class="col-md-3">
+                        <button class="btn btn-operator btn-block" onclick="appendToDisplay('+')">+</button>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12">
+                        <button class="btn btn-backspace btn-block" onclick="backspace()">Backspace</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.3/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script>
+        function appendToDisplay(value) {
+            document.getElementById('display').value += value;
+        }
+
+        function clearDisplay() {
+            document.getElementById('display').value = '';
+        }
+
+        function calculate() {
+            try {
+                document.getElementById('display').value = eval(document.getElementById('display').value);
+            } catch (error) {
+                document.getElementById('display').value = 'Error';
+            }
+        }
+
+        function backspace() {
+            let display = document.getElementById('display');
+            display.value = display.value.slice(0, -1);
+        }
+    </script>
+</body>
+</html>
